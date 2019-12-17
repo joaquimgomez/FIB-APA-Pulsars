@@ -20,11 +20,16 @@ Tareas a realizar (ordenadas):
 	* Nearest-neighbours
 	* Linear SVM
 	* Quadratic SVM
-* Proceso de modelización No-lineal
+* Proceso de modelización No-lineal (2)
 	* MLP
 	* RBFNN
 	* SVM con RBF kernel
 	* Random Forest
+
+
+Lineales: Nearest-neighbours, Regresión logística, Linear(/Quadratic) SVM
+
+No-lineales: MLP, Random Forest,
 
 
 
