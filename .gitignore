@@ -1,4 +1,7 @@
 .ipynb_checkpoints/
+
+__pycache__/
+
 # Created by https://www.gitignore.io/api/venv,jupyternotebooks
 # Edit at https://www.gitignore.io/?templates=venv,jupyternotebooks
 

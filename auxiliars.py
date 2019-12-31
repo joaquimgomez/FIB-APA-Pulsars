@@ -14,19 +14,3 @@ def confusionMatrix(real, predicted, classes):
 	confusionMat.columns.name = "Predicted"
 
 	return confusionMat
-
-def loocv(X, y, model, classes):
-    """
-    """
-
-    loo = LeaveOneOut()
-
-    predictions = []
-    for train_index, test_index in loo.split(X):
-        X_training, X_test = X.iloc[train_index], X.iloc[test_index]
-        y_training, _ = y.iloc[train_index], y.iloc[test_index]
-
-        model.fit(X_training, y_training)
-
-        predictions.append(model.predict(X_test)[0])
-    return confusionMatrix(y, predictions, classes), 1-accuracy_score(y, predictions)
