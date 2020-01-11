@@ -1,0 +1,25 @@
+DISTRIBUCIÓN DEL TRABAJO:
+
+El trabajo esta distribuido en las siguientes carpetas:
+	-> docs: Contiene el informe de la práctica.
+	-> data: Contiene los datos originales en la subcarpeta HTRU2 y los datos con los que se
+						ha trabajado en la raiz.
+	-> models: Contiene los modelos finales en formato scikit-learn de los diferentes métodos estudiados.
+	-> code: Todo el trabajo se ha realizado en Notebooks de Jupyter, que se encuentran
+						en la subcarpeta Notebooks.
+						Aun así, se adjunta el código Python para una mejor ejecución, y todos los notebooks
+						en formato PDF, en caso de no contar con Jupyter.
+
+Los notebooks, a modo de complemento de las explicaciones y exposiciones en el informe,
+cuentan con una descripción concisa y breve de los procesos desarrollados en ellos.
+
+
+LIBRERÍAS EMPLEADAS:
+ -> Numpy
+ -> Pandas
+ -> Matplotlib
+ -> Seaborn
+ -> Scikit-learn
+ -> Pickle
+ -> StatsModels
+ -> Graphviz
