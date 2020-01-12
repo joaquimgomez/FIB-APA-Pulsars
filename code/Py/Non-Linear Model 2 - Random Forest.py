@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -36,7 +39,7 @@ np.random.seed(543)
 # In[40]:
 
 
-data = pd.read_csv("./data/HTRU2/HTRU_2.csv", names = ['Profile_mean', 'Profile_stdev', 'Profile_skewness', 
+data = pd.read_csv("./data/HTRU2/HTRU_2.csv", names = ['Profile_mean', 'Profile_stdev', 'Profile_skewness',
                                                       'Profile_kurtosis', 'DM_mean', 'DM_stdev', 'DM_skewness',
                                                       'DM_kurtosis', 'Class'])
 
@@ -46,13 +49,13 @@ data = pd.read_csv("./data/HTRU2/HTRU_2.csv", names = ['Profile_mean', 'Profile_
 # In[41]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]], 
-                                                    data['Class'], 
+X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]],
+                                                    data['Class'],
                                                     test_size = 0.2,
                                                     random_state = 543)
 
 
-# I order to improve the performance of Random Forest, we will also analyze the performance of the method with no-correlated data: 
+# I order to improve the performance of Random Forest, we will also analyze the performance of the method with no-correlated data:
 
 # In[42]:
 
@@ -76,8 +79,8 @@ noCorrData = pd.concat([noCorrData, data[['Class']]], axis = 1)
 # In[43]:
 
 
-X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]], 
-                                                    noCorrData['Class'], 
+X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]],
+                                                    noCorrData['Class'],
                                                     test_size = 0.2)
 
 
@@ -116,7 +119,7 @@ class_weight
 def optimize_ntrees(X_train, y_train, ntrees):
     rf_results= []
     for nt in ntrees:
-        RF = RandomForestClassifier(n_estimators=nt, 
+        RF = RandomForestClassifier(n_estimators=nt,
                                               oob_score=True,
                                               n_jobs = -1,
                                               class_weight = class_weight);
@@ -165,7 +168,7 @@ rf_results.loc[rf_results.OOB.idxmin]
 # In[96]:
 
 
-RF = RandomForestClassifier(n_estimators=rf_results.ntrees.loc[rf_results.OOB.idxmin], 
+RF = RandomForestClassifier(n_estimators=rf_results.ntrees.loc[rf_results.OOB.idxmin],
                                           oob_score=True,
                                           n_jobs = -1,
                                           class_weight = class_weight);
@@ -185,7 +188,7 @@ confusionMatrix(y_train, y_pred, classes = [0,1])
 
 # Save model
 RFFile = open('./models/RF_Best_Data_pickle_file', 'wb')
-pickle.dump(best_model, RFFile) 
+pickle.dump(best_model, RFFile)
 
 
 # ### No-correlated Data Training
@@ -226,7 +229,7 @@ rf_results.loc[rf_results.OOB.idxmin]
 # In[110]:
 
 
-RF = RandomForestClassifier(n_estimators=rf_results.ntrees.loc[rf_results.OOB.idxmin], 
+RF = RandomForestClassifier(n_estimators=rf_results.ntrees.loc[rf_results.OOB.idxmin],
                                           oob_score=True,
                                           n_jobs = -1,
                                           class_weight = class_weight);
@@ -249,7 +252,7 @@ RFFileNC = open('./models/RF_Best_Data_NC_pickle_file', 'wb')
 pickle.dump(best_model_NC, RFFileNC)
 
 
-# ## Testing 
+# ## Testing
 
 # ### Normal Data Model Testing
 
@@ -293,4 +296,3 @@ print(classification_report(y_test_NC, y_pred_NC, target_names=['no', 'yes']))
 
 print("Testing Error:")
 print((1-accuracy_score(y_test_NC, y_pred_NC))*100)
-

@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -35,13 +38,13 @@ data = pd.read_csv("./data/stdHTRU_2.csv")
 # In[4]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]], 
-                                                    data['class'], 
+X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]],
+                                                    data['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
 
-# I order to improve the performance of k-NN, we will analyze the performance of the method with no-correlated standarized data: 
+# I order to improve the performance of k-NN, we will analyze the performance of the method with no-correlated standarized data:
 
 # In[5]:
 
@@ -52,8 +55,8 @@ noCorrData = pd.read_csv("./data/noCorrStdHTRU_2.csv")
 # In[6]:
 
 
-X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]], 
-                                                    noCorrData['class'], 
+X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]],
+                                                    noCorrData['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
@@ -63,7 +66,7 @@ X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCor
 # Scikit-learn library offers two options of Supervised Nearest Neighbors:
 # - KNeighborsClassifier: Algorithm based on the k number of classes.
 # - RadiusNeighborsClassifier: Algorithm based on the number of neighbors within a fixed radius  of each training point.
-# 
+#
 # We will use the first one because we know the number of classes and it is more useful.
 
 # In[7]:
@@ -148,7 +151,7 @@ pd.DataFrame(gs10cv.cv_results_).iloc[gs10cv.best_index_]
 
 # Save model
 kNCFile = open('./models/kNC_BestCV_STDData_pickle_file', 'wb')
-pickle.dump(gs10cv, kNCFile) 
+pickle.dump(gs10cv, kNCFile)
 
 
 # ### No-correlated Data Training
@@ -183,7 +186,7 @@ kNCFileNC = open('./models/kNC_BestCV_NCorrSTDData_pickle_file', 'wb')
 pickle.dump(gs10cv_nc, kNCFile)
 
 
-# ## Testing 
+# ## Testing
 
 # ### Normal Data Model Testing
 
@@ -239,4 +242,3 @@ confusionMatrix(y_test_NC, y_pred_NC, classes = [0,1])
 
 print("Test Error:")
 (1-accuracy_score(y_test_NC, gs10cv_nc.predict(X_test_NC)))*100
-

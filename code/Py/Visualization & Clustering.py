@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -195,4 +198,3 @@ plt.scatter(pcaData.iloc[:, 0], pcaData.iloc[:, 1], c=y_kmeans, cmap='viridis')
 
 centers = kmeans.cluster_centers_
 plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
-

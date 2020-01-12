@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -20,7 +23,7 @@ import matplotlib.pyplot as plt
 # In[2]:
 
 
-df = pd.read_csv("./data/HTRU2/HTRU_2.csv", names = ['Profile_mean', 'Profile_stdev', 'Profile_skewness', 
+df = pd.read_csv("./data/HTRU2/HTRU_2.csv", names = ['Profile_mean', 'Profile_stdev', 'Profile_skewness',
                                                       'Profile_kurtosis', 'DM_mean', 'DM_stdev', 'DM_skewness',
                                                       'DM_kurtosis', 'class'])
 
@@ -34,7 +37,7 @@ df
 # In[3]:
 
 
-df.isnull().values.any() # Has no NaN/lost values 
+df.isnull().values.any() # Has no NaN/lost values
 
 
 # In[4]:
@@ -162,4 +165,3 @@ corrNoCorrStd.style.background_gradient(cmap='coolwarm')
 
 
 noCorrStdDfWithClassData.to_csv("./data/noCorrStdHTRU_2.csv", index = False)
-

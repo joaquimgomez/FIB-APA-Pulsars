@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -40,14 +43,14 @@ data = pd.read_csv("./data/stdHTRU_2.csv")
 # In[5]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]], 
-                                                    data['class'], 
+X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]],
+                                                    data['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 print(data[data.columns[0:8]])
 
 
-# I order to improve the performance of logistic regression, we will also analyze the performance of the method with no-correlated standarized data: 
+# I order to improve the performance of logistic regression, we will also analyze the performance of the method with no-correlated standarized data:
 
 # In[8]:
 
@@ -58,8 +61,8 @@ noCorrData = pd.read_csv("./data/noCorrStdHTRU_2.csv")
 # In[9]:
 
 
-X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]], 
-                                                    noCorrData['class'], 
+X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]],
+                                                    noCorrData['class'],
                                                     test_size = 0.2)
 
 print(noCorrData[noCorrData.columns[0:6]])
@@ -147,7 +150,7 @@ pd.DataFrame(gs10cv.cv_results_).iloc[gs10cv.best_index_]
 
 # Save model
 LRFile = open('./models/LR_BestCV_STDData_pickle_file', 'wb')
-pickle.dump(gs10cv, LRFile) 
+pickle.dump(gs10cv, LRFile)
 
 
 # ### No-correlated Data Training
@@ -182,7 +185,7 @@ LRFileNC = open('./models/LR_BestCV_NCorrSTDData_pickle_file', 'wb')
 pickle.dump(gs10cv_nc, LRFile)
 
 
-# ## Testing 
+# ## Testing
 
 # ### Normal Data Model Testing
 
@@ -228,4 +231,3 @@ print(classification_report(y_test_NC, y_pred_NC, target_names=['no', 'yes']))
 
 print("Test Error:")
 (1-accuracy_score(y_test_NC, gs10cv_nc.predict(X_test_NC)))*100
-

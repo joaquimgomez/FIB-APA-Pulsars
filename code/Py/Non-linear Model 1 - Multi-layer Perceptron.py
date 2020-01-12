@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -27,13 +30,13 @@ data = pd.read_csv("./data/stdHTRU_2.csv")
 # In[3]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]], 
-                                                    data['class'], 
+X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]],
+                                                    data['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
 
-# We will analyze the performance of the method with no-correlated standarized data: 
+# We will analyze the performance of the method with no-correlated standarized data:
 
 # In[16]:
 
@@ -44,8 +47,8 @@ noCorrData = pd.read_csv("./data/noCorrStdHTRU_2.csv")
 # In[17]:
 
 
-X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]], 
-                                                    noCorrData['class'], 
+X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]],
+                                                    noCorrData['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
@@ -129,7 +132,7 @@ pd.DataFrame(gs10cv.cv_results_).iloc[gs10cv.best_index_]
 
 # Save model
 MLPClassFile = open('./models/MLPClass_BestCV_STDData_pickle_file', 'wb')
-pickle.dump(gs10cv, MLPClassFile) 
+pickle.dump(gs10cv, MLPClassFile)
 
 
 # ### No-correlated Data Training
@@ -163,7 +166,7 @@ pd.DataFrame(gs10cv_nc.cv_results_).iloc[gs10cv_nc.best_index_]
 
 # Save model
 MLPClassFileNC = open('./models/MLPClass_BestCV_NCorrSTDData_pickle_file', 'wb')
-pickle.dump(gs10cv_nc, MLPClassFileNC) 
+pickle.dump(gs10cv_nc, MLPClassFileNC)
 
 
 # ## Testing
@@ -222,4 +225,3 @@ confusionMatrix(y_test_NC, y_pred_NC, classes = [0,1])
 
 print("Test Error:")
 (1-accuracy_score(y_test_NC, gs10cv_nc.predict(X_test_NC)))*100
-

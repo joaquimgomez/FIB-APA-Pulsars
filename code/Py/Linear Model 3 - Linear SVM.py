@@ -1,3 +1,6 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
 
 # coding: utf-8
 
@@ -30,21 +33,21 @@ pd.plotting.scatter_matrix(data.drop(['class'], axis = 1), c=col, figsize=(15,15
 
 
 # From the Scatter Matrix we can de deduce that the Linear Kernel should be sufficient for the separation of classes.
-# 
-# Even so, we can obvserve that some features, see for example DM_mean-DM_stdev, have very close data. In order to reduce the impact of this fact, let's train SVM with (standarized) normal data and data with selected features. 
+#
+# Even so, we can obvserve that some features, see for example DM_mean-DM_stdev, have very close data. In order to reduce the impact of this fact, let's train SVM with (standarized) normal data and data with selected features.
 
 # We split a separate test set of relative size 20%:
 
 # In[4]:
 
 
-X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]], 
-                                                    data['class'], 
+X_train, X_test, y_train, y_test = train_test_split(data[data.columns[0:8]],
+                                                    data['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
 
-# We will analyze the performance of the method with no-correlated standarized data: 
+# We will analyze the performance of the method with no-correlated standarized data:
 
 # In[5]:
 
@@ -55,8 +58,8 @@ noCorrData = pd.read_csv("./data/noCorrStdHTRU_2.csv")
 # In[6]:
 
 
-X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]], 
-                                                    noCorrData['class'], 
+X_train_NC, X_test_NC, y_train_NC, y_test_NC = train_test_split(noCorrData[noCorrData.columns[0:6]],
+                                                    noCorrData['class'],
                                                     test_size = 0.2,
                                                     random_state = 1234)
 
@@ -145,7 +148,7 @@ pd.DataFrame(gs10cv.cv_results_).iloc[gs10cv.best_index_]
 
 # Save model
 SVMClassFile = open('./models/SVMClass_BestCV_STDData_pickle_file', 'wb')
-pickle.dump(gs10cv, SVMClassFile) 
+pickle.dump(gs10cv, SVMClassFile)
 
 
 # ### No-correlated Data Training
@@ -189,7 +192,7 @@ pd.DataFrame(gs10cv_nc.cv_results_).iloc[gs10cv_nc.best_index_]
 
 # Save model
 SVMClassFileNC = open('./models/SVMClass_BestCV_NCorrSTDData_pickle_file', 'wb')
-pickle.dump(gs10cv_nc, SVMClassFileNC) 
+pickle.dump(gs10cv_nc, SVMClassFileNC)
 
 
 # ## Testing
@@ -248,4 +251,3 @@ confusionMatrix(y_test_NC, y_pred_NC, classes = [0,1])
 
 print("Test Error:")
 (1-accuracy_score(y_test_NC, gs10cv_nc.predict(X_test_NC)))*100
-

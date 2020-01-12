@@ -1,3 +1,7 @@
+####
+#	Autores: Ferran Velasco y Joaquin Gomez
+####
+
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import LeaveOneOut
